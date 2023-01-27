@@ -87,9 +87,9 @@ const handleSubmit = async (e) => {
     loader(messageDiv);
 
     const response = await fetch("https://v-techgenie.onrender.com/", {
-        method: 'POST',
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             prompt: data.get("prompt")
