@@ -1,10 +1,10 @@
-import bot from './assets/bot.svg'
-import user from './assets/user.svg'
+import bot from './assets/bot.svg'//imporiting icon for bot
+import user from './assets/user.svg'//imporiting icon for user
 
-const form = document.querySelector('form')
-const chatContainer = document.querySelector('#chat_container')
+const form = document.querySelector('form');
+const chatContainer = document.querySelector('#chat_container');
 
-let loadInterval
+let loadInterval;
 
 function loader(element) {
     element.textContent = ''
@@ -30,7 +30,7 @@ function typeText(element, text) {
         } else {
             clearInterval(interval)
         }
-    }, 20)
+    }, 30)
 }
 
 // generate unique ID for each message div of bot
@@ -67,13 +67,13 @@ const handleSubmit = async (e) => {
 
     const data = new FormData(form)
 
-    // user's chatstripe
+    // user's chatstripe textarea
     chatContainer.innerHTML += chatStripe(false, data.get('prompt'))
 
-    // to clear the textarea input 
+    // to clear the textarea input(after ask the question) 
     form.reset()
 
-    // bot's chatstripe
+    // bot's chatstripe response textarea
     const uniqueId = generateUniqueId()
     chatContainer.innerHTML += chatStripe(true, " ", uniqueId)
 
@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
     // specific message div for user 
-    const messageDiv = document.getElementById(uniqueId)
+    const messageDiv = document.getElementById(uniqueId);
 
     // messageDiv.innerHTML = "..."load
     loader(messageDiv);
