@@ -63,7 +63,7 @@ function chatStripe(isAi, value, uniqueId) {
 }
 
 const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const data = new FormData(form)
 
@@ -77,14 +77,14 @@ const handleSubmit = async (e) => {
     const uniqueId = generateUniqueId()
     chatContainer.innerHTML += chatStripe(true, " ", uniqueId)
 
-    // to focus scroll to the bottom 
+    // Robo to focus scroll to the bottom 
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
-    // specific message div 
+    // specific message div for user 
     const messageDiv = document.getElementById(uniqueId)
 
-    // messageDiv.innerHTML = "..."
-    loader(messageDiv)
+    // messageDiv.innerHTML = "..."load
+    loader(messageDiv);
 
     const response = await fetch("https://v-techgenie.onrender.com/", {
         method: 'POST',
@@ -95,24 +95,24 @@ const handleSubmit = async (e) => {
             prompt: data.get('prompt')
         })
     })
-
-    clearInterval(loadInterval)
+    console.log(response);
+    clearInterval(loadInterval);
     messageDiv.innerHTML = " "
 
     if (response.ok) {
         const data = await response.json();
-        const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
+        const parsedData = data.bot.trim(); // trims any trailing spaces/'\n'(remove white space) 
 
-        typeText(messageDiv, parsedData)
+        typeText(messageDiv, parsedData);
     } else {
-        const err = await response.text()
+        const err = await response.text();
 
-        messageDiv.innerHTML = "Something went wrong"
+        messageDiv.innerHTML = "Something went wrong 🥲"
         alert(err)
     }
 }
 
-form.addEventListener('submit', handleSubmit)
+form.addEventListener('submit', handleSubmit);
 form.addEventListener('keyup', (e) => {
     if (e.keyCode === 13) {
         handleSubmit(e)
