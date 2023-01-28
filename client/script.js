@@ -22,7 +22,7 @@ const loader = (element) => {
 const typeText = (element, text) => {
   let index = 0
 
-  let interval = setInterval(() => {
+  let Interval = setInterval(() => {
     if (index < text.length) {
       element.innerHTML += text.charAt(index)
       index++
